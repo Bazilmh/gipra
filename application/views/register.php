@@ -114,11 +114,22 @@ var flag2=0;
         if(pass != passc)
         {
             $("#pass_err").html('Passwords dont match.'); 
+
             document.getElementById("submit_").style.display = 'none';
             document.getElementById("pass_err").style.color = 'red';
             flag2 = 1;
         }
         else
+        if(check_symbols(pass) == false )
+          { 
+            
+            $("#pass_err").html('Password must contain special characters.');
+            document.getElementById("submit_").style.display = 'none';
+            document.getElementById("pass_err").style.color = 'red';
+            flag2 = 1;
+
+          }
+          else
           {
             $("#pass_err").html('Passwords match');
              flag2 = 0;
@@ -133,6 +144,28 @@ var flag2=0;
 
 
         }
+
+
+        function check_symbols(s) {
+         const pattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).+$/;
+         return pattern.test(s);
+         }
+
+
+         // Get todays date .
+
+         const today = new Date();
+
+
+         //set todays date in date selector.
+
+         var date_day = "01";
+         var date_month = "01"
+         var date_year = today.getFullYear() < 10 ?  ("0"+today.getFullYear()):today.getFullYear();
+
+         var date_ = date_year+"-"+date_month+"-"+date_day; 
+         document.getElementById('dob').value = date_;
+         document.getElementById('dob').setAttribute("max", date_);
 
 
 

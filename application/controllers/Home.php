@@ -113,8 +113,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       public function logout() {
 
-      $_SESSION['logged_in'] = FALSE;
-      //redirect('home/login');
+      unset($_SESSION['logged_in']);
+      redirect('home');
 
       }
 
@@ -122,7 +122,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
          if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == TRUE)
          {
-
 
             if($_SESSION['user_type'] == 'developer')
             {
@@ -141,8 +140,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          }
          else
          {
-            $this->load->view("login");
-            echo "error";
+            redirect('home/login');
          }
 
 
